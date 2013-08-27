@@ -1,0 +1,53 @@
+#N canvas 726 130 581 443 10;
+#X obj 108 59 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 42 59 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 59 59 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array \$0-sound 169156 float 2;
+#X coords 0 0 169156 1 200 140 0;
+#X restore 346 294 graph;
+#X obj 39 317 outlet~;
+#X text 35 10 playsound~ - abstraction to load \, play \, and loop
+a sound;
+#X obj 112 168 f;
+#X obj 139 216 soundfiler;
+#X obj 139 262 outlet;
+#X obj 139 138 openpanel;
+#X obj 139 240 / 44.1;
+#X text 189 261 Return value is sound duration in ms;
+#X text 101 77 Bang to launch file selection panel;
+#X obj 226 120 loadbang;
+#X obj 139 164 pack s s;
+#X obj 48 106 select 1;
+#X msg 48 128 bang;
+#X symbolatom 42 42 10 0 0 0 - - -;
+#X obj 81 230 print;
+#X obj 28 148 tabplay~ \$0-sound;
+#X obj 226 142 symbol \$0-sound;
+#X msg 139 192 read -resize \$1 \$2;
+#X obj 92 317 outlet;
+#X text 354 79 thanks to Dan Ellis for this patch;
+#X connect 0 0 9 0;
+#X connect 1 0 19 0;
+#X connect 1 0 22 0;
+#X connect 2 0 6 1;
+#X connect 2 0 15 0;
+#X connect 6 0 15 0;
+#X connect 7 0 10 0;
+#X connect 9 0 14 0;
+#X connect 9 0 17 0;
+#X connect 10 0 8 0;
+#X connect 13 0 20 0;
+#X connect 14 0 21 0;
+#X connect 15 0 16 0;
+#X connect 16 0 19 0;
+#X connect 16 0 22 0;
+#X connect 19 0 4 0;
+#X connect 19 1 6 0;
+#X connect 20 0 14 1;
+#X connect 21 0 7 0;
+#X connect 21 0 18 0;
+#X coords 0 -1 1 1 85 48 1 40 28;

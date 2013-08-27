@@ -1,0 +1,74 @@
+#N canvas 92 119 613 619 10;
+#X obj 149 242 metro 10;
+#X floatatom 105 150 5 0 0 0 - - -;
+#X obj 311 214 +~ 1;
+#X obj 54 398 +~;
+#X obj 150 264 snapshot~;
+#X obj 311 278 +~ 1;
+#X obj 311 243 *~ 1;
+#X obj 148 220 loadbang;
+#X obj 311 186 osc~ 0.1;
+#X text 355 199 delay magnitude(ms);
+#X text 352 236 delay offset(ms);
+#X text 445 362 feedback amount;
+#X obj 161 114 vsl 12 50 0.001 1 0 0 empty empty speed -5 -7 1 10 -262144
+-1 -1 0 1;
+#X obj 48 54 inlet~;
+#X obj 398 362 *~ 0.5;
+#X obj 194 114 vsl 12 50 0 10 0 0 empty empty offset -5 -7 1 10 -262144
+-1 -1 0 1;
+#X obj 227 114 vsl 12 50 0 20 0 0 empty empty delay -5 -7 1 10 -262144
+-1 -1 0 1;
+#X obj 259 114 vsl 12 50 0 0.99 0 0 empty empty feedback -5 -7 1 10
+-262144 -1 -1 0 1;
+#X obj 107 53 inlet;
+#X obj 164 53 inlet;
+#X obj 107 77 s \$0-osc;
+#X obj 311 153 r \$0-osc;
+#X obj 164 77 s \$0-off;
+#X obj 358 255 r \$0-off;
+#X obj 221 53 inlet;
+#X obj 221 77 s \$0-del;
+#X obj 357 215 r \$0-del;
+#X obj 279 52 inlet;
+#X obj 279 77 s \$0-feed;
+#X obj 431 272 r \$0-feed;
+#X obj 156 383 delwrite~ \$0-line 1000;
+#X obj 311 307 vd~ \$0-line;
+#X text 102 103 flanger;
+#X obj 54 427 outlet~;
+#X text 102 133 delay(ms);
+#X text 114 418 In addition to the sliders \, the inlets allow the
+user to fully control the internals of the patch with no range-limits
+;
+#X obj 431 328 expr if($f1 > 1 \, 0.99 \, $f1);
+#X obj 431 305 expr if($f1 < -1 \, -0.99 \, $f1);
+#X connect 0 0 4 0;
+#X connect 2 0 6 0;
+#X connect 3 0 33 0;
+#X connect 4 0 1 0;
+#X connect 5 0 4 0;
+#X connect 5 0 31 0;
+#X connect 6 0 5 0;
+#X connect 7 0 0 0;
+#X connect 8 0 2 0;
+#X connect 12 0 8 0;
+#X connect 13 0 3 0;
+#X connect 13 0 30 0;
+#X connect 14 0 30 0;
+#X connect 15 0 5 1;
+#X connect 16 0 6 1;
+#X connect 17 0 14 1;
+#X connect 18 0 20 0;
+#X connect 19 0 22 0;
+#X connect 21 0 8 0;
+#X connect 23 0 5 1;
+#X connect 24 0 25 0;
+#X connect 26 0 6 1;
+#X connect 27 0 28 0;
+#X connect 29 0 37 0;
+#X connect 31 0 3 1;
+#X connect 31 0 14 0;
+#X connect 36 0 14 1;
+#X connect 37 0 36 0;
+#X coords 0 -1 1 1 200 70 2 100 100;
